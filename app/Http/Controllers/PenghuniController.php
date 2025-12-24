@@ -22,7 +22,7 @@ class PenghuniController extends Controller
         // PENTING: Hanya ambil kamar yang statusnya 'Tersedia'
         // Agar admin tidak memasukkan orang ke kamar yang sudah ada isinya
         $kamars = Kamar::where('status', 'Tersedia')->get();
-        
+
         return view('penghuni.create', compact('kamars'));
     }
 
@@ -46,5 +46,58 @@ class PenghuniController extends Controller
         $kamar->update(['status' => 'Terisi']);
 
         return redirect()->route('penghuni.index')->with('success', 'Penghuni Berhasil Ditambahkan');
+    }
+    // ... (kode sebelumnya: index, create, store) ...
+
+    // 4. Tampilkan Form Edit
+    public function edit($id)
+    {
+        $penghuni = Penghuni::findOrFail($id);
+        // Kita kirim data kamar juga, barangkali mau pindah kamar (opsional)
+        // Tapi untuk aman, kita load semua kamar yg tersedia + kamar dia saat ini
+        $kamars = Kamar::where('status', 'Tersedia')
+            ->orWhere('id', $penghuni->kamar_id)
+            ->get();
+
+        return view('penghuni.edit', compact('penghuni', 'kamars'));
+    }
+
+    // 5. Update Data
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama_lengkap' => 'required',
+            'nik' => 'required|numeric',
+            'no_hp' => 'required',
+            // Kita skip validasi kamar_id agar tidak rumit logikanya untuk pemula
+        ]);
+
+        $penghuni = Penghuni::findOrFail($id);
+
+        // Update data diri saja
+        $penghuni->update([
+            'nama_lengkap' => $request->nama_lengkap,
+            'nik' => $request->nik,
+            'no_hp' => $request->no_hp,
+            'tanggal_masuk' => $request->tanggal_masuk,
+        ]);
+
+        return redirect()->route('penghuni.index')->with('success', 'Data Penghuni Berhasil Diupdate');
+    }
+
+    // 6. Hapus Data (PENTING: Ubah status kamar jadi Tersedia)
+    public function destroy($id)
+    {
+        $penghuni = Penghuni::findOrFail($id);
+
+        // Cari kamarnya, lalu ubah jadi Tersedia
+        $kamar = Kamar::find($penghuni->kamar_id);
+        if ($kamar) {
+            $kamar->update(['status' => 'Tersedia']);
+        }
+
+        $penghuni->delete();
+
+        return redirect()->route('penghuni.index')->with('success', 'Penghuni dihapus, Kamar kembali Kosong/Tersedia');
     }
 }
