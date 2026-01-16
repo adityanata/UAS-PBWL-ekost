@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-2xl text-soft-800 leading-tight">
             {{ __('Registrasi Penghuni Baru') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+            <div class="bg-white/70 backdrop-blur-sm overflow-hidden shadow-soft rounded-soft-lg border border-soft-200">
+                <div class="p-6 text-soft-700">
 
                     <form action="{{ route('penghuni.store') }}" method="POST">
                         @csrf
@@ -16,7 +16,7 @@
                         <div class="mb-4">
                             <x-input-label for="kamar_id" :value="__('Pilih Kamar (Hanya yang Tersedia)')" />
                             <select id="kamar_id" name="kamar_id"
-                                class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                class="block mt-1 w-full border-soft-300 focus:border-sage-400 focus:ring-sage-300 rounded-soft shadow-soft bg-soft-50 text-soft-900"
                                 required>
                                 <option value="" disabled selected>-- Pilih Kamar --</option>
                                 @foreach ($kamars as $kamar)
@@ -62,7 +62,7 @@
                             </x-primary-button>
 
                             <a href="{{ route('penghuni.index') }}"
-                                class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+                                class="inline-flex items-center px-4 py-2 bg-soft-100 border border-soft-300 rounded-soft font-semibold text-xs text-soft-700 uppercase tracking-widest shadow-soft hover:bg-soft-50 hover:border-soft-400 focus:outline-none focus:ring-2 focus:ring-soft-400 focus:ring-offset-2 transition ease-in-out duration-150">
                                 {{ __('Batal') }}
                             </a>
                         </div>

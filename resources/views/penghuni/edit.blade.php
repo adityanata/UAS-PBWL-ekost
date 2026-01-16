@@ -1,22 +1,22 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-2xl text-soft-800 leading-tight">
             Edit Data Penghuni
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+            <div class="bg-white/70 backdrop-blur-sm overflow-hidden shadow-soft rounded-soft-lg border border-soft-200">
+                <div class="p-6 text-soft-700">
                     <form action="{{ route('penghuni.update', $penghuni->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
                         <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Kamar Saat Ini</label>
-                            <input type="text" value="Kamar {{ $penghuni->kamar->nomor_kamar }}" class="mt-1 block w-full bg-gray-100 border-gray-300 rounded-md shadow-sm" disabled>
-                            <p class="text-xs text-gray-500 mt-1">*Untuk pindah kamar, silakan hapus data ini lalu buat baru.</p>
+                            <label class="block text-sm font-medium text-soft-700">Kamar Saat Ini</label>
+                            <input type="text" value="Kamar {{ $penghuni->kamar->nomor_kamar }}" class="mt-1 block w-full bg-soft-100 border-soft-300 rounded-soft shadow-soft text-soft-600" disabled>
+                            <p class="text-xs text-soft-500 mt-1">*Untuk pindah kamar, silakan hapus data ini lalu buat baru.</p>
                         </div>
 
                         <div class="mb-4">
@@ -41,7 +41,7 @@
 
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Update Data') }}</x-primary-button>
-                            <a href="{{ route('penghuni.index') }}" class="text-gray-600 hover:text-gray-900">Batal</a>
+                            <a href="{{ route('penghuni.index') }}" class="inline-flex items-center px-4 py-2 bg-soft-100 border border-soft-300 rounded-soft font-semibold text-xs text-soft-700 uppercase tracking-widest shadow-soft hover:bg-soft-50 hover:border-soft-400 focus:outline-none focus:ring-2 focus:ring-soft-400 focus:ring-offset-2 transition ease-in-out duration-150">Batal</a>
                         </div>
                     </form>
                 </div>

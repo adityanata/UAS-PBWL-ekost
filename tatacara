@@ -1,0 +1,163 @@
+# SIM-KOST (Sistem Informasi Manajemen Kost) 🏠
+
+Aplikasi web sederhana namun handal untuk membantu pemilik kost mengelola operasional bisnis secara digital. Proyek ini dibangun sebagai pemenuhan Tugas/Ujian Akhir Semester (UAS) mata kuliah **Pemrograman Berbasis Web Lanjut (PBWL)**.
+
+![Status Proyek](https://img.shields.io/badge/Status-Completed-success)
+![Laravel](https://img.shields.io/badge/Laravel-11%2F12-red)
+![Tailwind](https://img.shields.io/badge/Tailwind-CSS-blue)
+
+## 🚀 Fitur Unggulan
+
+Aplikasi ini bukan sekadar CRUD biasa, tetapi memiliki logika bisnis yang saling terintegrasi:
+
+1.  **Sistem Autentikasi (Laravel Breeze)**
+    * Login & Register untuk Admin.
+    * Proteksi halaman (Middleware) agar data aman dari akses tanpa izin.
+
+2.  **Manajemen Data Kamar**
+    * Input data kamar (Nomor, Fasilitas, Harga).
+    * Indikator status: **Tersedia** (Hijau) atau **Terisi** (Merah).
+
+3.  **Manajemen Penghuni (Smart Logic)**
+    * **Filter Cerdas:** Saat menambah penghuni baru, sistem hanya menampilkan pilihan kamar yang statusnya *Tersedia*.
+    * **Otomatisasi Masuk:** Ketika penghuni disimpan, status kamar otomatis berubah menjadi *Terisi*.
+    * **Otomatisasi Keluar:** Ketika data penghuni dihapus, status kamar otomatis kembali menjadi *Tersedia*.
+
+4.  **Pencatatan Transaksi**
+    * Mencatat pembayaran bulanan penghuni.
+    * Relasi data (Admin tinggal memilih nama penghuni dari database).
+
+5.  **User Interface (UI)**
+    * Desain responsif dan rapi menggunakan Tailwind CSS.
+    * Tabel data tertata rapi (Centered Alignment).
+
+---
+
+## 🛠️ Persiapan Instalasi
+
+Sebelum menjalankan aplikasi, pastikan komputer Anda sudah terinstall:
+* **XAMPP** (Pastikan PHP versi 8.2 ke atas).
+* **Composer** (Untuk manajemen paket PHP).
+* **Node.js** (Untuk compile aset tampilan).
+* **Git** (Opsional).
+
+---
+
+## 💻 Cara Menjalankan (Installation Guide)
+
+Ikuti langkah-langkah ini secara berurutan di Terminal / Command Prompt:
+
+### 1. Clone Repository
+Unduh source code ke komputer Anda:
+```bash
+git clone [https://github.com/USERNAME-GITHUB-ANDA/UAS-PBWL-Ekost.git](https://github.com/USERNAME-GITHUB-ANDA/UAS-PBWL-Ekost.git)
+cd UAS-PBWL-Ekost
+
+2. Install Dependensi
+Download semua pustaka (library) yang dibutuhkan Laravel:
+composer install
+npm install
+
+3. Generate Key
+Buat kunci enkripsi keamanan aplikasi:
+php artisan key:generate
+
+4. Setup Database
+Buka XAMPP, nyalakan module Apache dan MySQL.
+Buka browser ke localhost/phpmyadmin.
+Buat database baru dengan nama: db_ekost.
+(Opsional) Cek file .env, pastikan DB_DATABASE=db_ekost.
+
+5. Build Frontend
+Siapkan aset tampilan agar desain tidak berantakan:
+npm run build
+
+Tentu, ini adalah draf lengkap untuk file README.md yang siap Anda gunakan.
+
+File ini dirancang agar terlihat profesional, mudah diikuti oleh siapa saja (termasuk dosen), dan mencakup semua fitur canggih yang sudah Anda buat (seperti otomatisasi status kamar).
+
+Silakan buat file bernama README.md di dalam folder proyek Anda, lalu Copy & Paste seluruh isi di bawah ini:
+
+Markdown
+
+# SIM-KOST (Sistem Informasi Manajemen Kost) 🏠
+
+Aplikasi web sederhana namun handal untuk membantu pemilik kost mengelola operasional bisnis secara digital. Proyek ini dibangun sebagai pemenuhan Tugas/Ujian Akhir Semester (UAS) mata kuliah **Pemrograman Berbasis Web Lanjut (PBWL)**.
+
+![Status Proyek](https://img.shields.io/badge/Status-Completed-success)
+![Laravel](https://img.shields.io/badge/Laravel-11%2F12-red)
+![Tailwind](https://img.shields.io/badge/Tailwind-CSS-blue)
+
+## 🚀 Fitur Unggulan
+
+Aplikasi ini bukan sekadar CRUD biasa, tetapi memiliki logika bisnis yang saling terintegrasi:
+
+1.  **Sistem Autentikasi (Laravel Breeze)**
+    * Login & Register untuk Admin.
+    * Proteksi halaman (Middleware) agar data aman dari akses tanpa izin.
+
+2.  **Manajemen Data Kamar**
+    * Input data kamar (Nomor, Fasilitas, Harga).
+    * Indikator status: **Tersedia** (Hijau) atau **Terisi** (Merah).
+
+3.  **Manajemen Penghuni (Smart Logic)**
+    * **Filter Cerdas:** Saat menambah penghuni baru, sistem hanya menampilkan pilihan kamar yang statusnya *Tersedia*.
+    * **Otomatisasi Masuk:** Ketika penghuni disimpan, status kamar otomatis berubah menjadi *Terisi*.
+    * **Otomatisasi Keluar:** Ketika data penghuni dihapus, status kamar otomatis kembali menjadi *Tersedia*.
+
+4.  **Pencatatan Transaksi**
+    * Mencatat pembayaran bulanan penghuni.
+    * Relasi data (Admin tinggal memilih nama penghuni dari database).
+
+5.  **User Interface (UI)**
+    * Desain responsif dan rapi menggunakan Tailwind CSS.
+    * Tabel data tertata rapi (Centered Alignment).
+
+---
+
+## 🛠️ Persiapan Instalasi
+
+Sebelum menjalankan aplikasi, pastikan komputer Anda sudah terinstall:
+* **XAMPP** (Pastikan PHP versi 8.2 ke atas).
+* **Composer** (Untuk manajemen paket PHP).
+* **Node.js** (Untuk compile aset tampilan).
+* **Git** (Opsional).
+
+---
+
+## 💻 Cara Menjalankan (Installation Guide)
+
+Ikuti langkah-langkah ini secara berurutan di Terminal / Command Prompt:
+
+### 1. Clone Repository
+Unduh source code ke komputer Anda:
+```bash
+git clone [https://github.com/USERNAME-GITHUB-ANDA/UAS-PBWL-Ekost.git](https://github.com/USERNAME-GITHUB-ANDA/UAS-PBWL-Ekost.git)
+cd UAS-PBWL-Ekost
+2. Install Dependensi
+Download semua pustaka (library) yang dibutuhkan Laravel:
+
+Bash
+
+composer install
+npm install
+3. Konfigurasi Environment
+Duplikat file pengaturan .env:
+
+4. Generate Key
+Buat kunci enkripsi keamanan aplikasi:
+php artisan key:generate
+
+5. Setup Database
+Buka XAMPP, nyalakan module Apache dan MySQL.
+Buka browser ke localhost/phpmyadmin.
+Buat database baru dengan nama: db_ekost.
+(Opsional) Cek file .env, pastikan DB_DATABASE=db_ekost.
+
+6. Build Frontend
+Siapkan aset tampilan agar desain tidak berantakan:
+npm run build
+
+7. Jalankan Server
+Nyalakan aplikasi:
+php artisan serve

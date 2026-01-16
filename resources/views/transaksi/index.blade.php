@@ -1,54 +1,58 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-2xl text-soft-800 leading-tight">
             {{ __('Riwayat Transaksi Pembayaran') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+            <div class="bg-white/70 backdrop-blur-sm overflow-hidden shadow-soft rounded-soft-lg border border-soft-200">
+                <div class="p-6 text-soft-700">
 
-                    <div class="mb-4">
+                    <div class="mb-6">
                         <a href="{{ route('transaksi.create') }}"
-                            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                            + Catat Pembayaran
+                            class="inline-flex items-center px-4 py-3 bg-sage-500 border border-transparent rounded-soft font-semibold text-xs text-white uppercase tracking-widest hover:bg-sage-600 focus:bg-sage-600 active:bg-sage-700 focus:outline-none focus:ring-2 focus:ring-sage-400 focus:ring-offset-2 transition ease-in-out duration-150 shadow-soft hover:shadow-soft-md">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Catat Pembayaran
                         </a>
                     </div>
 
                     @if (session('success'))
+                        <div class="mb-4 p-4 bg-sage-50 border border-sage-200 text-sage-700 rounded-soft shadow-soft">
                             {{ session('success') }}
                         </div>
                     @endif
 
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-gray-500">
+                    <div class="overflow-x-auto rounded-soft border border-soft-200">
+                        <table class="w-full text-sm text-soft-700">
 
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">
+                            <thead class="text-xs text-soft-800 uppercase bg-soft-100 border-b border-soft-200">
                                 <tr>
-                                    <th class="px-6 py-3">No</th>
-                                    <th class="px-6 py-3">Nama Penghuni</th>
-                                    <th class="px-6 py-3">Bulan Tagihan</th>
-                                    <th class="px-6 py-3">Tanggal Bayar</th>
-                                    <th class="px-6 py-3">Jumlah</th>
-                                    <th class="px-6 py-3">Keterangan</th>
-                                    <th class="px-6 py-3">Aksi</th>
+                                    <th class="px-6 py-4 text-left font-semibold">No</th>
+                                    <th class="px-6 py-4 text-left font-semibold">Nama Penghuni</th>
+                                    <th class="px-6 py-4 text-left font-semibold">Bulan Tagihan</th>
+                                    <th class="px-6 py-4 text-left font-semibold">Tanggal Bayar</th>
+                                    <th class="px-6 py-4 text-left font-semibold">Jumlah</th>
+                                    <th class="px-6 py-4 text-left font-semibold">Keterangan</th>
+                                    <th class="px-6 py-4 text-center font-semibold">Aksi</th>
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody class="divide-y divide-soft-200">
                                 @forelse ($transaksis as $transaksi)
-                                    <tr class="bg-white border-b hover:bg-gray-50 text-center">
+                                    <tr class="bg-white hover:bg-soft-50 transition ease-in-out duration-150">
                                         <td class="px-6 py-4">{{ $loop->iteration }}</td>
 
-                                        <td class="px-6 py-4 font-bold text-gray-900">
+                                        <td class="px-6 py-4 font-semibold text-soft-900">
                                             {{ $transaksi->penghuni->nama_lengkap ?? 'Penghuni Terhapus' }}
                                         </td>
 
                                         <td class="px-6 py-4">
                                             <span
-                                                class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
+                                                class="inline-block bg-sky-100 text-sky-700 text-xs font-semibold px-3 py-1 rounded-soft">
                                                 {{ $transaksi->bulan_tagihan }}
                                             </span>
                                         </td>
@@ -57,30 +61,38 @@
                                             {{ \Carbon\Carbon::parse($transaksi->tanggal_bayar)->format('d M Y') }}
                                         </td>
 
-                                        <td class="px-6 py-4 font-bold text-green-600">
+                                        <td class="px-6 py-4 font-semibold text-sage-600">
                                             Rp {{ number_format($transaksi->jumlah_bayar, 0, ',', '.') }}
                                         </td>
 
                                         <td class="px-6 py-4">{{ $transaksi->keterangan ?? '-' }}</td>
 
-                                        <td class="px-6 py-4 flex gap-2 justify-center">
+                                        <td class="px-6 py-4 flex gap-3 justify-center">
                                             <a href="{{ route('transaksi.edit', $transaksi->id) }}"
-                                                class="text-yellow-600 hover:underline font-medium">Edit</a>
-
-                                            <span class="text-gray-300">|</span>
+                                                class="inline-flex items-center px-3 py-2 bg-sky-100 border border-sky-200 text-sky-700 font-semibold text-xs rounded-soft hover:bg-sky-200 transition ease-in-out duration-150 shadow-soft hover:shadow-soft-md">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                                </svg>
+                                                Edit
+                                            </a>
 
                                             <form action="{{ route('transaksi.destroy', $transaksi->id) }}"
                                                 method="POST"
                                                 onsubmit="return confirm('Hapus riwayat pembayaran ini?');">
                                                 @csrf @method('DELETE')
                                                 <button type="submit"
-                                                    class="text-red-600 hover:underline font-medium">Hapus</button>
+                                                    class="inline-flex items-center px-3 py-2 bg-blush-100 border border-blush-200 text-blush-700 font-semibold text-xs rounded-soft hover:bg-blush-200 transition ease-in-out duration-150 shadow-soft hover:shadow-soft-md">
+                                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                    </svg>
+                                                    Hapus
+                                                </button>
                                             </form>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="px-6 py-4 text-center text-gray-400 italic">
+                                        <td colspan="7" class="px-6 py-8 text-center text-soft-400 italic">
                                             Belum ada riwayat transaksi.
                                         </td>
                                     </tr>
